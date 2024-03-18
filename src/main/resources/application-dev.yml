@@ -1,0 +1,24 @@
+server:
+  port: 8086
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  application:
+    name: "Impulso BO: DEV"
+  datasource:
+    url: jdbc:postgresql://localhost:5432/impulso_test_2
+    username: postgres
+    password: coffee2sweet
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
