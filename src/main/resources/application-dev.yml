@@ -1,6 +1,7 @@
 server:
   port: 8086
-
+jwt:
+  secret: "secret_key"
 spring:
   config:
     activate:

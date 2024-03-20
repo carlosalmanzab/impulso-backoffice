@@ -12,4 +12,5 @@ public interface UsuarioRepositoryPort {
     Optional<Usuario> update(Usuario usuario);
     boolean existsByIdentificacion(int identificacion);
     boolean deleteById(UUID id);
+    Optional<Usuario> findBycorreoElectronico(String correoElectronico);
 }

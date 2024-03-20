@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import com.impulso.impulsobackoffice.usuario.domain.model.Usuario;
 import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryPort;
-import com.impulso.impulsobackoffice.usuario.infrastructure.entity.UsuarioEntity;
+import com.impulso.impulsobackoffice.usuario.infrastructure.repositories.entity.UsuarioEntity;
 
 public class JpaUsuarioRepositoryAdapter implements UsuarioRepositoryPort {
 
@@ -36,7 +36,8 @@ public class JpaUsuarioRepositoryAdapter implements UsuarioRepositoryPort {
      */
     @Override
     public Optional<Usuario> findById(UUID id) {
-        return jpaUsuarioRepository.findById(id).filter(e -> !e.isDeleted()).map(UsuarioEntity::to);
+        return jpaUsuarioRepository.findById(id)
+                .filter(e -> !e.isDeleted()).map(UsuarioEntity::to);
     }
 
     /**
@@ -48,7 +49,8 @@ public class JpaUsuarioRepositoryAdapter implements UsuarioRepositoryPort {
      */
     @Override
     public Iterable<Usuario> findAll() {
-        return jpaUsuarioRepository.findAll().stream().filter(e -> !e.isDeleted()).map(UsuarioEntity::to).toList();
+        return jpaUsuarioRepository.findAll().stream()
+                .filter(e -> !e.isDeleted()).map(UsuarioEntity::to).toList();
     }
 
     /**
@@ -85,9 +87,28 @@ public class JpaUsuarioRepositoryAdapter implements UsuarioRepositoryPort {
         return jpaUsuarioRepository.save(usuarioFound.get()) != null;
     }
 
+    /**
+     * Checks if a user exists based on their identification number.
+     *
+     * @param identificacion the identification number of the user
+     * @return true if a user with the given identification number exists, false
+     *         otherwise
+     */
     @Override
     public boolean existsByIdentificacion(int identificacion) {
-       return jpaUsuarioRepository.existsByIdentificacion(identificacion);
+        return jpaUsuarioRepository.existsByIdentificacion(identificacion);
+    }
+
+    /**
+     * Find a Usuario by correoElectronico.
+     *
+     * @param correoElectronico the correoElectronico to search for
+     * @return an Optional containing the Usuario, if found
+     */
+    @Override
+    public Optional<Usuario> findBycorreoElectronico(String correoElectronico) {
+        return jpaUsuarioRepository.findByCorreoElectronico(correoElectronico)
+                .filter(e -> !e.isDeleted()).map(UsuarioEntity::to);
     }
 
 }
