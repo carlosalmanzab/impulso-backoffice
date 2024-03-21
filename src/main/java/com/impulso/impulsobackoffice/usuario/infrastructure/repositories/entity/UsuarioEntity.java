@@ -99,7 +99,7 @@ public class UsuarioEntity {
                 .build();
     }
 
-    public static Usuario to(UsuarioEntity usuarioEntity) {
+    public static Usuario toUsuario(UsuarioEntity usuarioEntity) {
         return Usuario.builder()
                 .id(usuarioEntity.getId())
                 .identificacion(usuarioEntity.getIdentificacion())

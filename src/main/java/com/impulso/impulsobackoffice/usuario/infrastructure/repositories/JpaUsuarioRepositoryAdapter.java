@@ -25,7 +25,7 @@ public class JpaUsuarioRepositoryAdapter implements UsuarioRepositoryPort {
     public Usuario save(Usuario usuario) {
         UsuarioEntity usuarioEntity = UsuarioEntity.from(usuario);
         UsuarioEntity usuarioSave = jpaUsuarioRepository.save(usuarioEntity);
-        return UsuarioEntity.to(usuarioSave);
+        return UsuarioEntity.toUsuario(usuarioSave);
     }
 
     /**
@@ -37,7 +37,7 @@ public class JpaUsuarioRepositoryAdapter implements UsuarioRepositoryPort {
     @Override
     public Optional<Usuario> findById(UUID id) {
         return jpaUsuarioRepository.findById(id)
-                .filter(e -> !e.isDeleted()).map(UsuarioEntity::to);
+                .filter(e -> !e.isDeleted()).map(UsuarioEntity::toUsuario);
     }
 
     /**
@@ -50,7 +50,9 @@ public class JpaUsuarioRepositoryAdapter implements UsuarioRepositoryPort {
     @Override
     public Iterable<Usuario> findAll() {
         return jpaUsuarioRepository.findAll().stream()
-                .filter(e -> !e.isDeleted()).map(UsuarioEntity::to).toList();
+                .filter(e -> !e.isDeleted())
+                .map(UsuarioEntity::toUsuario)
+                .toList();
     }
 
     /**
@@ -67,7 +69,7 @@ public class JpaUsuarioRepositoryAdapter implements UsuarioRepositoryPort {
         }
         UsuarioEntity usuarioEntity = UsuarioEntity.from(usuario);
         UsuarioEntity usuarioUpdated = jpaUsuarioRepository.save(usuarioEntity);
-        return Optional.of(UsuarioEntity.to(usuarioUpdated));
+        return Optional.of(UsuarioEntity.toUsuario(usuarioUpdated));
 
     }
 
@@ -108,7 +110,7 @@ public class JpaUsuarioRepositoryAdapter implements UsuarioRepositoryPort {
     @Override
     public Optional<Usuario> findBycorreoElectronico(String correoElectronico) {
         return jpaUsuarioRepository.findByCorreoElectronico(correoElectronico)
-                .filter(e -> !e.isDeleted()).map(UsuarioEntity::to);
+                .filter(e -> !e.isDeleted()).map(UsuarioEntity::toUsuario);
     }
 
 }

@@ -2,13 +2,17 @@ package com.impulso.impulsobackoffice.usuario.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.impulso.impulsobackoffice.usuario.application.usecase.CreateUsuarioUseCase;
+import com.impulso.impulsobackoffice.usuario.application.usecase.RegisterUsuarioUseCase;
+import com.impulso.impulsobackoffice.auth.domain.ports.in.CreateAuthenticationTokenUseCasePort;
 import com.impulso.impulsobackoffice.usuario.application.usecase.DeleteUsuarioUseCase;
+import com.impulso.impulsobackoffice.usuario.application.usecase.LoginUsuarioUseCase;
 import com.impulso.impulsobackoffice.usuario.application.usecase.RetrieveUsuarioUseCase;
 import com.impulso.impulsobackoffice.usuario.application.usecase.UpdateUsuarioUseCase;
-import com.impulso.impulsobackoffice.usuario.domain.ports.in.CreateUsuarioUseCasePort;
 import com.impulso.impulsobackoffice.usuario.domain.ports.in.DeleteUsuarioUseCasePort;
+import com.impulso.impulsobackoffice.usuario.domain.ports.in.LoginUsuarioUseCasePort;
+import com.impulso.impulsobackoffice.usuario.domain.ports.in.RegisterUsuarioUseCasePort;
 import com.impulso.impulsobackoffice.usuario.domain.ports.in.RetrieveUsuarioUseCasePort;
 import com.impulso.impulsobackoffice.usuario.domain.ports.in.UpdateUsuarioUseCasePort;
 import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryPort;
@@ -18,15 +22,45 @@ import com.impulso.impulsobackoffice.usuario.infrastructure.repositories.JpaUsua
 public class ApplicationConfig {
 
     /**
-     * Creates a new instance of the CreateUsuarioUseCasePort bean.
+     * Creates a RegisterUsuarioUseCasePort bean.
      *
-     * @param usuarioRepositoryPort the UsuarioRepositoryPort used to create the use
-     *                              case
-     * @return the newly created CreateUsuarioUseCasePort instance
+     * @param createAuthenticationTokenUseCasePort the
+     *                                             CreateAuthenticationTokenUseCasePort
+     *                                             object
+     * @param usuarioRepositoryPort                the UsuarioRepositoryPort object
+     * @param passwordEncoder                      the PasswordEncoder object
+     * @return the RegisterUsuarioUseCasePort object
      */
     @Bean
-    public CreateUsuarioUseCasePort createUsuarioUseCasePort(UsuarioRepositoryPort usuarioRepositoryPort) {
-        return new CreateUsuarioUseCase(usuarioRepositoryPort);
+    public RegisterUsuarioUseCasePort registerUsuarioUseCasePort(
+            CreateAuthenticationTokenUseCasePort createAuthenticationTokenUseCasePort,
+            UsuarioRepositoryPort usuarioRepositoryPort,
+            PasswordEncoder passwordEncoder) {
+        return new RegisterUsuarioUseCase(
+                createAuthenticationTokenUseCasePort,
+                usuarioRepositoryPort,
+                passwordEncoder);
+    }
+
+    /**
+     * Creates a new instance of the LoginUsuarioUseCasePort class.
+     *
+     * @param usuarioRepositoryPort                the repository port for managing
+     *                                             usuarios
+     * @param createAuthenticationTokenUseCasePort the use case port for creating
+     *                                             authentication tokens
+     * @param passwordEncoder                      the password encoder for
+     *                                             encrypting passwords
+     * @return the newly created LoginUsuarioUseCasePort instance
+     */
+    @Bean
+    public LoginUsuarioUseCasePort loginUsuarioUseCasePort(UsuarioRepositoryPort usuarioRepositoryPort,
+            CreateAuthenticationTokenUseCasePort createAuthenticationTokenUseCasePort,
+            PasswordEncoder passwordEncoder) {
+        return new LoginUsuarioUseCase(
+                usuarioRepositoryPort,
+                passwordEncoder,
+                createAuthenticationTokenUseCasePort);
     }
 
     /**

@@ -34,8 +34,13 @@ public class BearerJwtAuthenticationProvider extends OncePerRequestFilter {
             final String token = HEADER.substring(7);
 
             try {
-                final String username = validateAuthenticationToken.validToken(new Token(token)).getCorreoElectronico();
-                SecurityContextHolder.getContext().setAuthentication(
+                final String username = validateAuthenticationToken
+                .validToken(
+                    new Token(token))
+                    .getCorreoElectronico();
+                SecurityContextHolder
+                .getContext()
+                .setAuthentication(
                         new UsernamePasswordAuthenticationToken(username, null, Collections.emptyList()));
             } catch (final RuntimeException e) {
                 SecurityContextHolder.clearContext();
