@@ -3,8 +3,8 @@ package com.impulso.impulsobackoffice.usuario.infrastructure.repositories.entity
 import java.util.Date;
 import java.util.UUID;
 
-import com.impulso.impulsobackoffice.shared.enums.Roles;
-import com.impulso.impulsobackoffice.shared.enums.TipoIdentificacion;
+import com.impulso.impulsobackoffice.core.domain.enums.Roles;
+import com.impulso.impulsobackoffice.core.domain.enums.TipoIdentificacion;
 import com.impulso.impulsobackoffice.usuario.domain.model.Usuario;
 
 import jakarta.persistence.Column;

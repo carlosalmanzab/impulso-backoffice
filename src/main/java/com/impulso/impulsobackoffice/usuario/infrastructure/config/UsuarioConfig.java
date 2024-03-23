@@ -16,10 +16,11 @@ import com.impulso.impulsobackoffice.usuario.domain.ports.in.RegisterUsuarioUseC
 import com.impulso.impulsobackoffice.usuario.domain.ports.in.RetrieveUsuarioUseCasePort;
 import com.impulso.impulsobackoffice.usuario.domain.ports.in.UpdateUsuarioUseCasePort;
 import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryPort;
+import com.impulso.impulsobackoffice.usuario.infrastructure.repositories.JpaUsuarioRepository;
 import com.impulso.impulsobackoffice.usuario.infrastructure.repositories.JpaUsuarioRepositoryAdapter;
 
 @Configuration
-public class ApplicationConfig {
+public class UsuarioConfig {
 
     /**
      * Creates a RegisterUsuarioUseCasePort bean.
@@ -107,8 +108,8 @@ public class ApplicationConfig {
      * @return description of return value
      */
     @Bean
-    public UsuarioRepositoryPort usuarioRepositoryPort(JpaUsuarioRepositoryAdapter jpaUsuarioRepositoryAdapter) {
-        return jpaUsuarioRepositoryAdapter;
+    public UsuarioRepositoryPort usuarioRepositoryPort(JpaUsuarioRepository jpaUsuarioRepository) {
+        return new JpaUsuarioRepositoryAdapter(jpaUsuarioRepository);
     }
 
 }

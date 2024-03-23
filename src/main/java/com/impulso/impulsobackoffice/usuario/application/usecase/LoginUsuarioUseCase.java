@@ -26,8 +26,18 @@ public class LoginUsuarioUseCase implements LoginUsuarioUseCasePort {
         this.createAuthenticationToken = createAuthenticationToken;
     }
 
+    /**
+     * Authenticates a user by verifying the provided login credentials.
+     *
+     * @param loginRequest the login request containing the username and password
+     * @return the authentication token for the logged-in user
+     * @throws InvalidAuthenticationLoginException    if the login credentials are
+     *                                                invalid
+     * @throws InvalidAuthenticationPasswordException if the password is invalid
+     */
     @Override
-    public Token login(LoginRequestDto loginRequest) {
+    public Token login(LoginRequestDto loginRequest)
+            throws InvalidAuthenticationLoginException, InvalidAuthenticationPasswordException {
 
         final Optional<Usuario> usuario = usuarioRepository.findBycorreoElectronico(loginRequest.username());
 
@@ -38,12 +48,27 @@ public class LoginUsuarioUseCase implements LoginUsuarioUseCasePort {
                 createAuthenticationToken.createToken(usuario.get().getCorreoElectronico()));
     }
 
+    /**
+     * Ensure that the usuario exists.
+     *
+     * @param usuario      the optional usuario
+     * @param loginRequest the login request dto
+     */
     private void ensureUsuarioExist(Optional<Usuario> usuario, LoginRequestDto loginRequest) {
         if (!usuario.isPresent()) {
             throw new InvalidAuthenticationLoginException(loginRequest.username());
         }
     }
 
+    /**
+     * Ensures that the provided credentials are valid for the given user.
+     *
+     * @param usuario      the user for whom the credentials are being checked
+     * @param loginRequest the login request containing the credentials to be
+     *                     checked
+     * @throws InvalidAuthenticationPasswordException if the provided password does
+     *                                                not match the user's password
+     */
     private void ensureCredentialsAreValid(Usuario usuario, LoginRequestDto loginRequest) {
         if (!passwordEncoder.matches(loginRequest.password(), usuario.getPassword())) {
             throw new InvalidAuthenticationPasswordException(loginRequest.username());

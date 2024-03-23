@@ -13,7 +13,7 @@ import com.impulso.impulsobackoffice.auth.infrastructure.provider.JwtAuthenticat
 import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryPort;
 
 @Configuration
-public class ApplicationConfig {
+public class AuthConfig {
 
     @Value("${jwt.secret}")
     private String secretKey;

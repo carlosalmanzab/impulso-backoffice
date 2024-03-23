@@ -33,7 +33,7 @@ public class RegisterUsuarioUseCase implements RegisterUsuarioUseCasePort {
      * @return the authentication token for the newly registered user
      */
     @Override
-    public Token register(RegisterRequestDto registerRequest) {
+    public Token register(RegisterRequestDto registerRequest) throws UsuarioAlreadyExistsException {
         // check if user exists
         final Optional<Usuario> usuario = usuarioRepository
                 .findBycorreoElectronico(registerRequest.correoElectronico());

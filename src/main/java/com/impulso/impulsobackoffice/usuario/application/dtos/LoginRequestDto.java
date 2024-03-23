@@ -1,3 +1,14 @@
 package com.impulso.impulsobackoffice.usuario.application.dtos;
 
-public record LoginRequestDto(String username, String password) {}
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+public record LoginRequestDto(  
+@NotBlank    
+@Size(min = 10, max = 50)
+@Email
+String username, 
+@NotBlank
+@Size(min = 8, max = 50)
+String password) {}

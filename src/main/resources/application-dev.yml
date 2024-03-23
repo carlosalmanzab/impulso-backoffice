@@ -16,10 +16,15 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update
+
+      ddl-auto: none
 
 logging:
   level:
     org:
       hibernate:
         SQL: debug
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

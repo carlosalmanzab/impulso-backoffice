@@ -30,7 +30,7 @@ public class SecurityConfig {
     }
 
     @Bean()
-    public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationProvider authenticationProvider) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.
         addFilterBefore(
             new BearerJwtAuthenticationProvider(validateAuthenticationToken)
@@ -46,7 +46,6 @@ public class SecurityConfig {
                 .anyRequest()
                 .authenticated()
                 )
-                .authenticationProvider(authenticationProvider)
                 .build();
     }
 }
