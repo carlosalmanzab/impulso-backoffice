@@ -1,7 +1,19 @@
 server:
   port: 8086
+  servlet:
+    context-path: /api
+
+springdoc:
+  packages-to-scan:
+    - com.impulso.impulsobackoffice.usuario.infrastructure.controllers
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    use-root-path: true
+
 jwt:
   secret: "secret_key"
+
 spring:
   config:
     activate:
@@ -9,22 +21,26 @@ spring:
   application:
     name: "Impulso BO: DEV"
   datasource:
-    url: jdbc:postgresql://localhost:5432/impulso_test_2
+    url: jdbc:postgresql://localhost:5432/impulso_test_2?stringtype=unspecified
     username: postgres
     password: coffee2sweet
     driver-class-name: org.postgresql.Driver
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-
       ddl-auto: none
+    show-sql: true
 
 logging:
   level:
     org:
+      springframework:
+        web:
+          servlet:
+            mvc:
+              method:
+                annotation: TRACE
+        security:
+          web:
+            FilterChainProxy: DEBUG
       hibernate:
-        SQL: debug
-
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
+        SQL: DEBUG
