@@ -36,13 +36,13 @@ public class RegisterUsuarioUseCase implements RegisterUsuarioUseCasePort {
     public Token register(RegisterRequestDto registerRequest) throws UsuarioAlreadyExistsException {
         // check if user exists
         final Optional<Usuario> usuario = usuarioRepository
-                .findBycorreoElectronico(registerRequest.correoElectronico());
+                .findByCorreoElectronico(registerRequest.correoElectronico());
 
         ensureUserDoesNotExist(registerRequest, usuario);
-
+        
         // save user
         final Usuario user = RegisterRequestDto
-        .toUsuario(registerRequest, passwordEncoder.encode(registerRequest.password()));
+                .toUsuario(registerRequest, passwordEncoder.encode(registerRequest.password()));
 
         usuarioRepository.save(user);
 
@@ -50,6 +50,7 @@ public class RegisterUsuarioUseCase implements RegisterUsuarioUseCasePort {
         return new Token(
                 createAuthenticationToken.createToken(user.getCorreoElectronico()));
     }
+
 
     /**
      * Ensure that the user does not already exist and throw an exception if they

@@ -26,7 +26,7 @@ public class ValidateAuthenticationTokenUseCase implements ValidateAuthenticatio
     @Override
     public Usuario validToken(Token token) {
         final String correoElectronico = tokenProvider.validToken(token);
-        final Optional<Usuario> usuario = usuarioRepository.findBycorreoElectronico(correoElectronico);
+        final Optional<Usuario> usuario = usuarioRepository.findByCorreoElectronico(correoElectronico);
         return usuario.get();
     }
 

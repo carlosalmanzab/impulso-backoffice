@@ -39,7 +39,7 @@ public class LoginUsuarioUseCase implements LoginUsuarioUseCasePort {
     public Token login(LoginRequestDto loginRequest)
             throws InvalidAuthenticationLoginException, InvalidAuthenticationPasswordException {
 
-        final Optional<Usuario> usuario = usuarioRepository.findBycorreoElectronico(loginRequest.username());
+        final Optional<Usuario> usuario = usuarioRepository.findByCorreoElectronico(loginRequest.username());
 
         ensureUsuarioExist(usuario, loginRequest);
         ensureCredentialsAreValid(usuario.get(), loginRequest);

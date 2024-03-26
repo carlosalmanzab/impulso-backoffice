@@ -19,11 +19,13 @@ import com.impulso.impulsobackoffice.usuario.domain.ports.in.LoginUsuarioUseCase
 import com.impulso.impulsobackoffice.usuario.domain.ports.in.RegisterUsuarioUseCasePort;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
-@RestController
-@RequestMapping(path = "api/auth", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+@RestController()
+@RequestMapping("/auth")
 public class HttpAuthController {
     private static final Logger log = LoggerFactory.getLogger(HttpAuthController.class);
+
     private final RegisterUsuarioUseCasePort register;
     private final LoginUsuarioUseCasePort login;
 
@@ -34,7 +36,7 @@ public class HttpAuthController {
 
     @PostMapping(path = "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Token> register(
-            HttpServletRequest request, @RequestBody RegisterRequestDto body)
+            HttpServletRequest request, @RequestBody @Valid RegisterRequestDto body)
             throws UsuarioAlreadyExistsException {
         log.info("method={}, path={}, body={}", request.getMethod(), request.getRequestURI(), body);
 
@@ -45,7 +47,7 @@ public class HttpAuthController {
     }
 
     @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Token> login(HttpServletRequest request, @RequestBody LoginRequestDto body)
+    public ResponseEntity<Token> login(HttpServletRequest request, @RequestBody @Valid LoginRequestDto body)
             throws InvalidAuthenticationLoginException, InvalidAuthenticationPasswordException {
         log.info("method={}, path={}, body={}", request.getMethod(), request.getRequestURI(), body);
 

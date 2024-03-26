@@ -1,5 +1,6 @@
 package com.impulso.impulsobackoffice.usuario.domain.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -20,8 +21,8 @@ public class UsuarioBuilder {
     private String correoElectronico;
     private Roles rol;
     private String password;
-    private Date fechaCreacion;
-    private Date fechaActualizacion;
+    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaActualizacion;
 
     public UsuarioBuilder id() {
         this.id = UUID.randomUUID();
@@ -91,12 +92,12 @@ public class UsuarioBuilder {
         return this;
     }
 
-    public UsuarioBuilder fechaCreacion(Date fechaCreacion) {
+    public UsuarioBuilder fechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
         return this;
     }
 
-    public UsuarioBuilder fechaActualizacion(Date fechaActualizacion) {
+    public UsuarioBuilder fechaActualizacion(LocalDateTime fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
         return this;
     }
@@ -159,11 +160,11 @@ public class UsuarioBuilder {
         return password;
     }
 
-    public Date getFechaCreacion() {
+    public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public Date getFechaActualizacion() {
+    public LocalDateTime getFechaActualizacion() {
         return fechaActualizacion;
     }
 

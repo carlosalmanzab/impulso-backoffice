@@ -1,7 +1,11 @@
 package com.impulso.impulsobackoffice.usuario.infrastructure.repositories.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import com.impulso.impulsobackoffice.core.domain.enums.Roles;
 import com.impulso.impulsobackoffice.core.domain.enums.TipoIdentificacion;
@@ -13,6 +17,8 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +31,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@DynamicInsert
+@DynamicUpdate
 @Entity
 @Table(name = "usuario", schema = "seguridad", uniqueConstraints = {
         @UniqueConstraint(columnNames = { "identificacion", "numero_telefono", "correo_electronico" })
@@ -65,18 +73,24 @@ public class UsuarioEntity {
     @Column(name = "correo_electronico", unique = true)
     private String correoElectronico;
 
-    @Column(name = "rol")
+    @Column(name = "rol", columnDefinition = "seguridad.roles")
     @Enumerated(EnumType.STRING)
     private Roles rol;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "fecha_creacion")
-    private Date fechaCreacion;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(
+        name = "fecha_creacion", nullable = false, updatable = false,
+         insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime fechaCreacion;
 
-    @Column(name = "fecha_actualizacion")
-    private Date fechaActualizacion;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(
+        name = "fecha_actualizacion", nullable = false, updatable = false, 
+        insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime fechaActualizacion;
 
     @Column(name = "eliminado")
     private boolean isDeleted;

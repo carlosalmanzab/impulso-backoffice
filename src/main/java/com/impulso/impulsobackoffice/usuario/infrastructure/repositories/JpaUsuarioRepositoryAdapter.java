@@ -108,7 +108,7 @@ public class JpaUsuarioRepositoryAdapter implements UsuarioRepositoryPort {
      * @return an Optional containing the Usuario, if found
      */
     @Override
-    public Optional<Usuario> findBycorreoElectronico(String correoElectronico) {
+    public Optional<Usuario> findByCorreoElectronico(String correoElectronico) {
         return jpaUsuarioRepository.findByCorreoElectronico(correoElectronico)
                 .filter(e -> !e.isDeleted()).map(UsuarioEntity::toUsuario);
     }
