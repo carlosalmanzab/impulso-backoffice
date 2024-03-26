@@ -19,7 +19,7 @@ public class CreateAuthenticationTokenUseCase implements CreateAuthenticationTok
      */
     @Override
     public String createToken(String username) {
-        return tokenProvider.createToken(username).toString();
+        return tokenProvider.createToken(username);
     }
 
 }

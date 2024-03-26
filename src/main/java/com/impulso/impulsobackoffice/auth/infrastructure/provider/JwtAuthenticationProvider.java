@@ -11,7 +11,7 @@ import com.impulso.impulsobackoffice.auth.domain.model.Token;
 import com.impulso.impulsobackoffice.auth.domain.ports.out.AuthenticationTokenProviderPort;
 
 public class JwtAuthenticationProvider implements AuthenticationTokenProviderPort {
-    
+
     private final String secretKey;
 
     public JwtAuthenticationProvider(final String secretKey) {
@@ -19,17 +19,16 @@ public class JwtAuthenticationProvider implements AuthenticationTokenProviderPor
     }
 
     @Override
-    public Token createToken(String username) {
+    public String createToken(String username) {
         final Date now = new Date();
         final Date expirationDate = new Date(now.getTime() + 60 * 24 * 60 * 60 * 1000);// 30 days
         final Algorithm algorithm = Algorithm.HMAC256(secretKey);
         new JWT();
-        return new Token(
-                JWT.create()
+        return JWT.create()
                 .withSubject(username)
                 .withIssuedAt(now)
                 .withExpiresAt(expirationDate)
-                .sign(algorithm));
+                .sign(algorithm);
     }
 
     @Override

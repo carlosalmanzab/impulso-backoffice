@@ -8,7 +8,7 @@ public interface AuthenticationTokenProviderPort {
      * @param username
      * @return token
      * */
-    Token createToken(final String username);
+    String createToken(final String username);
     /**
      * Validate the token and return the email.
      * @param token
