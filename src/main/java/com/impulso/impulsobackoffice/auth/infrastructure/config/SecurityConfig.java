@@ -22,13 +22,13 @@ public class SecurityConfig {
         private final BearerJwtAuthenticationProvider bearerJwtAuthenticationProvider;
 
         private static final String[] WHITE_LIST = {
-                        "/api/v3/api-docs",
-                        "/api/v3/api-docs/**",
-                        "/api/swagger-ui/**",
-                        "/api/swagger-ui.html",
-                        "/api/swagger-resources",
-                        "/api/swagger-resources/**",
-                        "/api/auth/**",
+                        "/v3/api-docs",
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/swagger-resources",
+                        "/swagger-resources/**",
+                        "auth/**",
                         "/api/auth/login",
                         "/auth/login"
         };
@@ -55,7 +55,6 @@ public class SecurityConfig {
                                 .authorizeHttpRequests(requests -> 
                                         requests.requestMatchers(HttpMethod.POST, WHITE_LIST).permitAll()
                                                         .requestMatchers(HttpMethod.GET, WHITE_LIST).permitAll()
-                                                        .requestMatchers(HttpMethod.POST, WHITE_LIST).permitAll()
                                                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                                         .requestMatchers(HttpMethod.HEAD, "/**").permitAll()
                                                         .anyRequest().authenticated()
