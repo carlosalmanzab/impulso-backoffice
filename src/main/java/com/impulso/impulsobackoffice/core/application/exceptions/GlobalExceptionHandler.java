@@ -7,15 +7,12 @@ import org.slf4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.Nullable;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import com.impulso.impulsobackoffice.core.application.dtos.ErrorMessage;
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -28,16 +25,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             @SuppressWarnings("null") HttpStatusCode status,
             @SuppressWarnings("null") WebRequest request) {
 
-        Map<String, String> errors = new HashMap<>();
+        Map<String, Object> errors = new HashMap<>();
 
         ex.getBindingResult().getFieldErrors()
                 .forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
 
-        ErrorMessage errorResponse = new ErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage(), errors);
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+        problem.setTitle(ex.getMessage());
+        problem.setProperty("InvalidParams", errors);
 
         log.error("message, exception={}, errors={}", ex.getMessage(), errors);
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        return ResponseEntity.status(status).body(problem);
     }
 
 }
