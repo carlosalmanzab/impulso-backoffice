@@ -39,7 +39,7 @@ public class RegisterUsuarioUseCase implements RegisterUsuarioUseCasePort {
                 .findByCorreoElectronico(registerRequest.correoElectronico());
 
         ensureUserDoesNotExist(registerRequest, usuario);
-        
+
         // save user
         final Usuario user = RegisterRequestDto
                 .toUsuario(registerRequest, passwordEncoder.encode(registerRequest.password()));
@@ -51,7 +51,6 @@ public class RegisterUsuarioUseCase implements RegisterUsuarioUseCasePort {
                 createAuthenticationToken.createToken(user.getCorreoElectronico()));
     }
 
-
     /**
      * Ensure that the user does not already exist and throw an exception if they
      * do.
@@ -61,11 +60,7 @@ public class RegisterUsuarioUseCase implements RegisterUsuarioUseCasePort {
      */
     private void ensureUserDoesNotExist(RegisterRequestDto registerRequest, final Optional<Usuario> usuario) {
         if (usuario.isPresent()) {
-            try {
-                throw new UsuarioAlreadyExistsException(registerRequest.correoElectronico());
-            } catch (UsuarioAlreadyExistsException e) {
-                e.printStackTrace();
-            }
+            throw new UsuarioAlreadyExistsException(registerRequest.correoElectronico());
         }
     }
 
