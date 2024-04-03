@@ -18,7 +18,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -39,9 +39,10 @@ import com.impulso.impulsobackoffice.usuario.domain.ports.in.LoginUsuarioUseCase
 import com.impulso.impulsobackoffice.usuario.domain.ports.in.RegisterUsuarioUseCasePort;
 import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryPort;
 
+
 @WebMvcTest(controllers = HttpAuthController.class)
 @AutoConfigureMockMvc(printOnlyOnFailure = false)
-@WithMockUser()
+@ActiveProfiles({ "dev", "test" })
 class TestHttpAuthController {
         @Autowired
         private MockMvc mockMvc;
