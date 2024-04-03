@@ -1,4 +1,4 @@
-package com.impulso.impulsobackoffice.usuario.application.usecase;
+package com.impulso.impulsobackoffice.usuario.domain.in;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -25,6 +25,7 @@ import com.impulso.impulsobackoffice.core.domain.enums.Roles;
 import com.impulso.impulsobackoffice.core.domain.enums.TipoIdentificacion;
 import com.impulso.impulsobackoffice.usuario.application.dtos.RegisterRequestDto;
 import com.impulso.impulsobackoffice.usuario.application.exceptions.UsuarioAlreadyExistsException;
+import com.impulso.impulsobackoffice.usuario.application.usecase.RegisterUsuarioUseCase;
 import com.impulso.impulsobackoffice.usuario.domain.model.Usuario;
 import com.impulso.impulsobackoffice.usuario.domain.ports.in.RegisterUsuarioUseCasePort;
 import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryPort;

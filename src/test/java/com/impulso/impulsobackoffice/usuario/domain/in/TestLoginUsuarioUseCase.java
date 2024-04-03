@@ -1,4 +1,4 @@
-package com.impulso.impulsobackoffice.usuario.application.usecase;
+package com.impulso.impulsobackoffice.usuario.domain.in;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -23,6 +23,7 @@ import com.impulso.impulsobackoffice.core.domain.enums.TipoIdentificacion;
 import com.impulso.impulsobackoffice.usuario.application.dtos.LoginRequestDto;
 import com.impulso.impulsobackoffice.usuario.application.exceptions.InvalidAuthenticationLoginException;
 import com.impulso.impulsobackoffice.usuario.application.exceptions.InvalidAuthenticationPasswordException;
+import com.impulso.impulsobackoffice.usuario.application.usecase.LoginUsuarioUseCase;
 import com.impulso.impulsobackoffice.usuario.domain.model.Usuario;
 import com.impulso.impulsobackoffice.usuario.domain.ports.in.LoginUsuarioUseCasePort;
 import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryPort;

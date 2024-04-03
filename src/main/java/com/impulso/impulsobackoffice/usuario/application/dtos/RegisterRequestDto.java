@@ -8,14 +8,15 @@ import com.impulso.impulsobackoffice.usuario.domain.model.Usuario;
 import com.impulso.impulsobackoffice.usuario.domain.model.UsuarioBuilder;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public record RegisterRequestDto(
-        @NotEmpty(message = "El identificación es obligatoria")
+        @NotNull(message = "El identificación es obligatoria")
         int identificacion,
-        @NotEmpty(message = "El tipo de identificación es obligatorio")
+        @NotNull(message = "El tipo de identificación es obligatorio")
         TipoIdentificacion tipoIdentificacion,
         @NotEmpty(message = "El primer nombre es obligatorio")
         String primerNombre,
@@ -23,7 +24,7 @@ public record RegisterRequestDto(
         @NotEmpty(message = "El primer apellido es obligatorio")
         String primerApellido,
         String segundoApellido,
-        @NotEmpty(message = "La fecha de nacimiento es obligatoria") @Past(message = "La fecha de nacimiento debe ser en el pasado") 
+        @Past(message = "La fecha de nacimiento debe ser en el pasado") 
         Date fechaNacimiento,
         String numeroTelefono,
         String segundoNumeroTelefono,
