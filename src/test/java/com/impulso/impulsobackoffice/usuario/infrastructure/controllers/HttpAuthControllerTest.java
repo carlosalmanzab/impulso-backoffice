@@ -43,7 +43,7 @@ import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryP
 @WebMvcTest(controllers = HttpAuthController.class)
 @AutoConfigureMockMvc(printOnlyOnFailure = false)
 @ActiveProfiles({ "dev", "test" })
-class TestHttpAuthController {
+class HttpAuthControllerTest {
         @Autowired
         private MockMvc mockMvc;
 
