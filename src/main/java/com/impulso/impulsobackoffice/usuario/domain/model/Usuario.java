@@ -1,10 +1,11 @@
 package com.impulso.impulsobackoffice.usuario.domain.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
-import com.impulso.impulsobackoffice.shared.enums.Roles;
-import com.impulso.impulsobackoffice.shared.enums.TipoIdentificacion;
+import com.impulso.impulsobackoffice.core.domain.enums.Roles;
+import com.impulso.impulsobackoffice.core.domain.enums.TipoIdentificacion;
 
 public class Usuario {
     private UUID id;
@@ -20,13 +21,13 @@ public class Usuario {
     private String correoElectronico;
     private Roles rol;
     private String password;
-    private Date fechaCreacion;
-    private Date fechaActualizacion;
+    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaActualizacion;
 
     public Usuario(UUID id, int identificacion, TipoIdentificacion tipoIdentificacion, String primerNombre,
             String segundoNombre, String primerApellido, String segundoApellido, Date fechaNacimiento,
             String numeroTelefono, String segundoNumeroTelefono, String correoElectronico, Roles rol, String password,
-            Date fechaCreacion, Date fechaActualizacion) {
+            LocalDateTime fechaCreacion, LocalDateTime fechaActualizacion) {
         this.id = id;
         this.identificacion = identificacion;
         this.tipoIdentificacion = tipoIdentificacion;
@@ -148,19 +149,19 @@ public class Usuario {
         this.password = password;
     }
 
-    public Date getFechaCreacion() {
+    public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Date getFechaActualizacion() {
+    public LocalDateTime getFechaActualizacion() {
         return fechaActualizacion;
     }
 
-    public void setFechaActualizacion(Date fechaActualizacion) {
+    public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
     }
 

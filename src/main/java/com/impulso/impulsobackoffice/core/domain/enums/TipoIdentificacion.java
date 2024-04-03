@@ -1,4 +1,4 @@
-package com.impulso.impulsobackoffice.shared.enums;
+package com.impulso.impulsobackoffice.core.domain.enums;
 
 public enum TipoIdentificacion {
     CEDULA,
