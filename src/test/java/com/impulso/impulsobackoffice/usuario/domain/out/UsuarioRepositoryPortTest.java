@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.impulso.impulsobackoffice.core.domain.enums.Roles;
 import com.impulso.impulsobackoffice.core.domain.enums.TipoIdentificacion;
@@ -21,6 +22,7 @@ import jakarta.transaction.Transactional;
 
 @DisplayName("Test JpaUsuarioRepositoryAdapter")
 @SpringBootTest
+@ActiveProfiles({ "dev", "test" })
 class UsuarioRepositoryPortTest {
 
     @Autowired
