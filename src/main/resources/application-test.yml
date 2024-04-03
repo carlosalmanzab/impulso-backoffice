@@ -1,5 +1,5 @@
 server:
-  port: 8086
+  port: 8087
   servlet:
     context-path: /api
 
@@ -20,7 +20,7 @@ spring:
   application:
     name: "Impulso BO: DEV"
   datasource:
-    url: jdbc:postgresql://localhost:5432/impulso_db_development?stringtype=unspecified
+    url: jdbc:postgresql://localhost:5432/impulso_db_test?stringtype=unspecified
     username: postgres
     password: coffee2sweet
     driver-class-name: org.postgresql.Driver
