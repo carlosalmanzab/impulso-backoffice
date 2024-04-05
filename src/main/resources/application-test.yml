@@ -11,14 +11,14 @@ springdoc:
     path: /swagger-ui.html
 
 jwt:
-  secret: "secret_key"
+  secret: "secret_test_key"
 
 spring:
   config:
     activate:
-      on-profile: dev
+      on-profile: test
   application:
-    name: "Impulso BO: DEV"
+    name: "Impulso BO: TEST"
   datasource:
     url: jdbc:postgresql://localhost:5432/impulso_db_test?stringtype=unspecified
     username: postgres

@@ -32,7 +32,7 @@ import com.impulso.impulsobackoffice.usuario.domain.ports.in.RegisterUsuarioUseC
 import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryPort;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@ActiveProfiles({ "dev", "test" })
+@ActiveProfiles("test")
 class RegisterUsuarioUseCaseTest {
 
     @Autowired

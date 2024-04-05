@@ -15,9 +15,6 @@ import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryP
 @Configuration
 public class AuthConfig {
 
-    @Value("${jwt.secret}")
-    private String secretKey;
-
     @Bean
     public ValidateAuthenticationTokenUseCasePort validateAuthenticationTokenUseCasePort(
             AuthenticationTokenProviderPort authenticationTokenProviderPort,
@@ -32,7 +29,7 @@ public class AuthConfig {
     }
 
     @Bean
-    public AuthenticationTokenProviderPort authenticationTokenProviderPort() {
-        return new JwtAuthenticationProvider(this.secretKey);
+    public AuthenticationTokenProviderPort authenticationTokenProviderPort(@Value("${jwt.secret}") String secretKey) {
+        return new JwtAuthenticationProvider(secretKey);
     }
 }

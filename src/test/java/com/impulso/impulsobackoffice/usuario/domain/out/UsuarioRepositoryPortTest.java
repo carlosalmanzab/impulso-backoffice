@@ -22,7 +22,7 @@ import jakarta.transaction.Transactional;
 
 @DisplayName("Test JpaUsuarioRepositoryAdapter")
 @SpringBootTest
-@ActiveProfiles({ "dev", "test" })
+@ActiveProfiles("test")
 class UsuarioRepositoryPortTest {
 
     @Autowired
