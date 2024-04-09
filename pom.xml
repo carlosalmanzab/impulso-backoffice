@@ -119,14 +119,6 @@
 				<build.profile.id>test</build.profile.id>
 				<profileActive>test</profileActive>
 			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.testcontainers</groupId>
-					<artifactId>postgresql</artifactId>
-					<version>1.19.7</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
 			<build>
 				<resources>
 					<resource>
