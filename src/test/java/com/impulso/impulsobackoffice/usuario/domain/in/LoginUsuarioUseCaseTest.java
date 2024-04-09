@@ -30,8 +30,8 @@ import com.impulso.impulsobackoffice.usuario.domain.ports.in.LoginUsuarioUseCase
 import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryPort;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles({"dev", "test"})
-class TestLoginUsuarioUseCase {
+@ActiveProfiles("test")
+class LoginUsuarioUseCaseTest {
 
     @Autowired
     private LoginUsuarioUseCasePort loginUsuarioUseCase;
