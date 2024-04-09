@@ -56,20 +56,20 @@ class HttpAuthControllerIntegrationTest {
         @BeforeEach
         public void setUp() {
                 testRegisterRequestDto = new RegisterRequestDto(
-                                1009898987,
+                                1009898982,
                                 TipoIdentificacion.CEDULA,
-                                "firstName",
-                                "secondName",
-                                "lastName",
-                                "secondLastName",
+                                "firstNameINTEGRATED",
+                                "secondNameINTEGRATED",
+                                "lastNameINTEGRATED",
+                                "secondLastNameINTEGRATED",
                                 Date.from(LocalDate.of(1990, 1, 1).atTime(0, 0).toInstant(ZoneOffset.UTC)),
-                                "123456789",
-                                "987654321",
-                                "lOqZB@example.com",
+                                "123456782",
+                                "987654322",
+                                "lOqZBINTEGRATED@example.com",
                                 Roles.USER,
                                 "P@ssw0rd");
 
-                testLoginRequestDto = new LoginRequestDto("lOqZB@example.com", "P@ssw0rd");
+                testLoginRequestDto = new LoginRequestDto("lOqZBINTEGRATED@example.com", "P@ssw0rd");
         }
 
         @DisplayName("Integration test for register by http")

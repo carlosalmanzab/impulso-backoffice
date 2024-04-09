@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ import com.impulso.impulsobackoffice.core.domain.enums.TipoIdentificacion;
 import com.impulso.impulsobackoffice.usuario.domain.model.Usuario;
 import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryPort;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 
 @DisplayName("Test JpaUsuarioRepositoryAdapter")
@@ -31,16 +36,16 @@ class UsuarioRepositoryPortTest {
     private Usuario testUsuario() {
         final Usuario usuario = Usuario.builder()
                 .id(UUID.randomUUID())
-                .identificacion(1009898987)
+                .identificacion(1009898981)
                 .tipoIdentificacion(TipoIdentificacion.CEDULA)
-                .primerNombre("firstName")
-                .segundoNombre("secondName")
-                .primerApellido("lastName")
-                .segundoApellido("secondLastName")
+                .primerNombre("firstName1")
+                .segundoNombre("secondName1")
+                .primerApellido("lastName1")
+                .segundoApellido("secondLastName1")
                 .fechaNacimiento(new Date())
-                .numeroTelefono("123456789")
+                .numeroTelefono("123456781")
                 .segundoNumeroTelefono("987654321")
-                .correoElectronico("lOqZB@example.com")
+                .correoElectronico("lOqZB1@example.com")
                 .rol(Roles.USER)
                 .password("password")
                 .build();
