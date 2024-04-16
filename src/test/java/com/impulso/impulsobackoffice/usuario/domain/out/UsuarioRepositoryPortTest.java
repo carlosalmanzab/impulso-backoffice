@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +18,6 @@ import com.impulso.impulsobackoffice.core.domain.enums.TipoIdentificacion;
 import com.impulso.impulsobackoffice.usuario.domain.model.Usuario;
 import com.impulso.impulsobackoffice.usuario.domain.ports.out.UsuarioRepositoryPort;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 
 @DisplayName("Test JpaUsuarioRepositoryAdapter")
