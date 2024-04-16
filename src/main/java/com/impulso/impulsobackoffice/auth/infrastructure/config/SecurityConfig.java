@@ -28,7 +28,8 @@ public class SecurityConfig {
                         "/swagger-ui.html",
                         "/swagger-resources",
                         "/swagger-resources/**",
-                        "/auth/**"
+                        "/auth/**",
+                        "/departamento/**"
         };
 
         SecurityConfig(BearerJwtAuthenticationProvider bearerJwtAuthenticationProvider) {
